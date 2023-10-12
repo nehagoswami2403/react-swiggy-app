@@ -3,7 +3,10 @@ import restList from "../utils/mockData";
 import { useState } from "react";
 
 const Body = () => {
-    const [restaurentList, setRestaurentList] = useState(restList)
+    const [restaurentList, setRestaurentList] = useState(restList);
+    // const arr = useState(restList);
+    // const [restaurentList, setRestaurentList] = arr - array destructiong, we can write code like ths as well 
+    //                                                 its same code.
     return (
       <div className="body">
         <div className="filter">
