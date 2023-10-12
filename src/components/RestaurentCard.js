@@ -8,7 +8,7 @@ const RestaurentComp = (props) => {
         <img className='rest-logo' alt='rest-logo' src={CDN_URL + restData.info.cloudinaryImageId}></img>
       <h1>{name}</h1>
       <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating}</h4>
+      <h4>{avgRating} Stars</h4>
       <h4>{costForTwo}</h4>
       <h4>{sla.deliveryTime} minutes</h4>
 
