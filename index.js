@@ -1751,9 +1751,10 @@ const HeaderComp = () => {
     return (
       <div className="body">
         <div className="search">Search</div> 
-        <div className="rest-cont">
-        <RestaurentComp restData={restList[4]} />
-        {/* <RestaurentComp restName="Meghna Foods" cuisine="Biryani" /> */}
+        <div className="rest-cont"> 
+        {
+            restList.map(restaurent => <RestaurentComp restData={restaurent} />)
+        }
         </div>    
       </div>
     )
