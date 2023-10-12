@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDom from 'react-dom/client';
-
 const restList =
   [
     {
@@ -1719,67 +1716,6 @@ const restList =
     }
   ]
 
+export default restList;
 
-const HeaderComp = () => {
-    return (
-      <div className="header">
-        <div className="logo-cotainer">
-          <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"></img>
-          </div>
-          <div className="nav-items">
-            <ul> 
-              <li>Home</li>
-              <li>About Us</li>
-              <li>Order</li>
-              <li>Cart</li>
-            </ul>
-          </div>
-        </div>
-    );
-  };
-  
-  const AppLayout = () => {
-    return (
-        <div className="app">
-        <HeaderComp/>
-        <Body />
-        </div>
-    );
-  };
-  
-  const Body = () => {
-    return (
-      <div className="body">
-        <div className="search">Search</div> 
-        <div className="rest-cont"> 
-        {
-            restList.map(restaurent => <RestaurentComp restData={restaurent} />)
-        }
-        </div>    
-      </div>
-    )
-  }
-  
-  const RestaurentComp = (props) => { 
-    const { restData } = props;
-    const {cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla} =  restData?.info
-    return(
-    <div className="rest-card" style={{backgroundColor: "#f0f0f0"}}>
-        <img className='rest-logo' alt='rest-logo' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + restData.info.cloudinaryImageId}></img>
-      <h1>{name}</h1>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{sla.deliveryTime} minutes</h4>
-
-    </div>
-  )
-  }
-  
-  const root = ReactDom.createRoot(document.getElementById("root"));
-
-  root.render(
-      <AppLayout />
-  );
-
-// root.render(parent)
+//default export
