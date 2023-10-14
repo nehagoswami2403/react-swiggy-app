@@ -5,9 +5,10 @@ import Shimmer from "./shimmer";
 
 const Body = () => {
     const [restaurentList, setRestaurentList] = useState([]);
+    const [filteredRestaurent, setFilteredRestaurent] = useState([]);
     // const arr = useState(restList);
-    // const [restaurentList, setRestaurentList] = arr - array destructiong, we can write code like ths as well 
-    //                                                 its same code.
+    // const [restaurentList, setRestaurentList] = arr - array destructiong, we can write code like ths as well its same code.
+    const [searchText, setSearchText] = useState("");                                        
 
     useEffect(() => {
        fetchData();
@@ -21,7 +22,8 @@ const Body = () => {
         console.log(json);
         //calling useState to re render the comp
         //optional chaining
-        setRestaurentList(json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setRestaurentList(json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurent(json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
     return restaurentList.length === 0 ? (
@@ -29,17 +31,27 @@ const Body = () => {
     ) : (
       <div className="body">
         <div className="filter">
+            <div className="search">
+                <input type="text" className="search-box" value={searchText} 
+                onChange={(event) => setSearchText(event.target.value)} />
+                <button onClick={() => {
+                 const filteredRest = restaurentList.filter((rest) =>
+                 rest.info.name.toLowerCase().includes(searchText.toLowerCase()))
+                setFilteredRestaurent(filteredRest);
+                }}
+                >Search</button>
+            </div>
         <button className="filter-btn" onClick={() => {
             //filter logic by rating
-            const filterRes = restaurentList.filter(rest => rest.info.avgRating > 4.3);
+            const filterRes = restaurentList.filter(rest => rest.info.avgRating > 4.5);
             console.log(filterRes);
-            setRestaurentList(filterRes);
+            setFilteredRestaurent(filterRes);
             }}
             >Top Rated Restaurents</button>
         </div> 
         <div className="rest-cont"> 
         {
-            restaurentList.map(restaurent => 
+            filteredRestaurent.map(restaurent => 
             <RestaurentComp key={restaurent.info.id} restData={restaurent} />)
         }
         </div>    
