@@ -1,6 +1,7 @@
 import RestaurentComp from "./RestaurentCard";
 import restList from "../utils/mockData";
 import { useState, useEffect } from "react";
+import Shimmer from "./shimmer";
 
 const Body = () => {
     const [restaurentList, setRestaurentList] = useState([]);
@@ -21,6 +22,11 @@ const Body = () => {
         //calling useState to re render the comp
         //optional chaining
         setRestaurentList(json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    }
+
+    if (restaurentList.length === 0) {
+        return <Shimmer />
+        
     }
 
     return (
