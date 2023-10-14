@@ -24,12 +24,9 @@ const Body = () => {
         setRestaurentList(json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
-    if (restaurentList.length === 0) {
-        return <Shimmer />
-        
-    }
-
-    return (
+    return restaurentList.length === 0 ? (
+        <Shimmer />
+    ) : (
       <div className="body">
         <div className="filter">
         <button className="filter-btn" onClick={() => {
