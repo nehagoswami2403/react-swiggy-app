@@ -27,6 +27,7 @@
   
   .rest-card {
     width: 200px;
+    height: 600px;
     margin: 5px;
   }
 
@@ -86,4 +87,6 @@
 .search {
     margin-top: 10px;
 }
-  
+a {
+    text-decoration: none
+}

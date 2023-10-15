@@ -2,6 +2,7 @@ import RestaurentComp from "./RestaurentCard";
 import restList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [restaurentList, setRestaurentList] = useState([]);
@@ -43,7 +44,7 @@ const Body = () => {
             </div>
         <button className="filter-btn" onClick={() => {
             //filter logic by rating
-            const filterRes = restaurentList.filter(rest => rest.info.avgRating > 4.5);
+            const filterRes = restaurentList.filter(rest => rest.info.avgRating > 4.2);
             console.log(filterRes);
             setFilteredRestaurent(filterRes);
             }}
@@ -52,8 +53,8 @@ const Body = () => {
         <div className="rest-cont"> 
         {
             filteredRestaurent.map(restaurent => 
-            <RestaurentComp key={restaurent.info.id} restData={restaurent} />)
-        }
+           <Link to={"/restaurent/" + restaurent.info.id} key={restaurent.info.id}> <RestaurentComp restData={restaurent} /></Link>
+        )}
         </div>    
       </div>
     )
