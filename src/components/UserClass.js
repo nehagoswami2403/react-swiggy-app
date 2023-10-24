@@ -4,25 +4,35 @@ import {Component} from "react"
 class UserClass extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            count: 0
+            userInfo: {
+                name: "name",
+                loction: 'location'
+            }
         }
     }
+
+    async componentDidMount() {
+        const data = await fetch("https://api.github.com/users/nehagoswami2403");
+        const json = await data.json();
+        //api call
+        console.log(json);
+
+        this.setState( {
+            userInfo: json,
+        })
+
+    }
+
     render() {
-        const { name, location, contact } = this.props;
-        const { count, count2 } = this.state;
+        const { login, created_at, avatar_url } = this.state.userInfo;
         return (
             <div className="user-card">
-                <h1>Count: {count}</h1>
-                <button onClick={() => {
-                    this.setState({
-                        count: this.state.count + 1
-                    })
-                    
-                }}>Count increase</button>
-                <h1>Name: {name}</h1>
-                <h2>Location: {location}</h2>
-                <h3>Contact: {contact}</h3>
+                <img src={avatar_url}></img>
+                <h1>Name: {login}</h1>
+                <h2>Created at: {created_at}</h2>
+                <h3>Contact: {login}</h3>
             </div>
         )
     }
