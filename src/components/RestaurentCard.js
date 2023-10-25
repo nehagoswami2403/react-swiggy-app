@@ -16,4 +16,15 @@ const RestaurentComp = (props) => {
   )
   }
 
+  export const withPromotedLable = (RestaurentComp) => {
+    return (restaurent) => {
+      return (
+        <div>
+        <label>Promoted</label>
+        <RestaurentComp {...restaurent} />
+        </div>
+      )
+    }
+  }
+
 export default RestaurentComp;

@@ -1,4 +1,4 @@
-import RestaurentComp from "./RestaurentCard";
+import RestaurentComp, {withPromotedLable} from "./RestaurentCard";
 import restList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./shimmer";
@@ -10,7 +10,8 @@ const Body = () => {
     const [filteredRestaurent, setFilteredRestaurent] = useState([]);
     // const arr = useState(restList);
     // const [restaurentList, setRestaurentList] = arr - array destructiong, we can write code like ths as well its same code.
-    const [searchText, setSearchText] = useState("");                                        
+    const [searchText, setSearchText] = useState("");    
+    const RestaurentCardPromoted = withPromotedLable(RestaurentComp);  
 
     useEffect(() => {
        fetchData();
@@ -29,7 +30,7 @@ const Body = () => {
     };
 
     const onlineStatus = useOnlineStatus();
-    
+
     if (onlineStatus===false) return (
         <h1>Looks like you are offline!!! please connect with your internet</h1>
     )
@@ -60,7 +61,11 @@ const Body = () => {
         <div className="rest-cont"> 
         {
             filteredRestaurent.map(restaurent => 
-           <Link to={"/restaurent/" + restaurent.info.id} key={restaurent.info.id}> <RestaurentComp restData={restaurent} /></Link>
+           <Link to={"/restaurent/" + restaurent.info.id} key={restaurent.info.id}>
+            { restaurent.info.isOpen ? ( <RestaurentCardPromoted restData={restaurent} /> ):
+            ( <RestaurentComp restData={restaurent} /> )}
+             {/* <RestaurentComp restData={restaurent} /> */}
+             </Link>
         )}
         </div>    
       </div>
