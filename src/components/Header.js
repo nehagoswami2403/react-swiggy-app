@@ -19,7 +19,7 @@ export const Header = () => {
                 {onlineStatus ? "Green" : "Red"}
             </li>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Hommmmmmmme</Link>
             </li>
               <li>
                 <Link to="/about">About</Link>
